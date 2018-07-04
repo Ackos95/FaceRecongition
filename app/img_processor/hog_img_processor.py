@@ -1,19 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import cv2
 import dlib
+import cv2
 
+import img_processor
 import utils.path
 import utils.dlib
 
 
-class VideoParser(object):
-    """
-    Class VideoParser
-
-    It contains public method for capturing machines video feed, and starting up infinite processing loop
-    """
+class HogImgProcessor(img_processor.ImgProcessor):
 
     def __init__(self):
         """
@@ -74,29 +70,12 @@ class VideoParser(object):
 
         cv2.imshow('Video', frame)
 
-    def start_parsing(self):
+    def process_image(self, image):
         """
-        Start method
+        Override from ImgProcessor class, method for handling one image
 
-        It captures video feed from machine on which it is started, and starts infinite loop.
-        It reads frames from captured feed, and each of them passes through parse function (to extract
-        faces), and draw function (to mark extracted faces).
-
-        Loop is finished after user press 'q' button on keyboard. After finishing up loop, it releases
-        video feed, and destroys all open-cv displays.
+        :param image: image to be parsed
         """
 
-        video_capture = cv2.VideoCapture(0)
-
-        while True:
-            _, frame = video_capture.read()
-
-            found_faces, shapes = self._parse_frame(frame)
-            self._draw_rectangles(frame, found_faces, shapes)
-
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
-
-        # When everything is done, release the capture
-        video_capture.release()
-        cv2.destroyAllWindows()
+        found_faces, shapes = self._parse_frame(image)
+        self._draw_rectangles(image, found_faces, shapes)

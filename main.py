@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from app.hog_scanner.VideoParser import VideoParser
+import app.video_feed_parsing
 
 
 if __name__ == '__main__':
-    vp = VideoParser()
-    vp.start_parsing()
+    app.video_feed_parsing.start_video_feed_parsing('hog')
