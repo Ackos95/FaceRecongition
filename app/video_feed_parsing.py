@@ -5,10 +5,13 @@ import cv2
 
 import img_processor.haar_img_processor
 import img_processor.hog_img_processor
+import img_processor.cnn_img_processor
 
 
 IMG_PROCESSORS = {
     'hog': img_processor.hog_img_processor.HogImgProcessor(),
+    # DEPRECATED
+    'cnn': img_processor.cnn_img_processor.CnnImgProcessor(),
     'haar': img_processor.haar_img_processor.HaarImgProcessor()
 }
 
