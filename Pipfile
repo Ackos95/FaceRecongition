@@ -6,6 +6,8 @@ name = "pypi"
 [dev-packages]
 
 [packages]
+dlib = "*"
+numpy = "*"
 opencv-python = "*"
 
 [requires]

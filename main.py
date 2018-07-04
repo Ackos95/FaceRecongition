@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from app.scanner.VideoParser import VideoParser
+from app.hog_scanner.VideoParser import VideoParser
 
 
 if __name__ == '__main__':
