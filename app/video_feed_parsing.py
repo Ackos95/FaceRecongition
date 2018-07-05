@@ -3,16 +3,11 @@
 
 import cv2
 
-import img_processor.haar_img_processor
 import img_processor.hog_img_processor
-import img_processor.cnn_img_processor
 
 
 IMG_PROCESSORS = {
     'hog': img_processor.hog_img_processor.HogImgProcessor(),
-    # DEPRECATED
-    'cnn': img_processor.cnn_img_processor.CnnImgProcessor(),
-    'haar': img_processor.haar_img_processor.HaarImgProcessor()
 }
 
 
@@ -33,7 +28,8 @@ def start_video_feed_parsing(img_processor='hog'):
     while True:
         _, frame = video_capture.read()
 
-        IMG_PROCESSORS[img_processor].process_image(frame)
+        frame = IMG_PROCESSORS[img_processor].mark_up_faces(frame)
+        cv2.imshow('Video', frame)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break

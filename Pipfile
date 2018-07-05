@@ -9,6 +9,7 @@ name = "pypi"
 dlib = "*"
 numpy = "*"
 opencv-python = "*"
+opencv-contrib-python = "*"
 
 [requires]
 python_version = "2.7"
